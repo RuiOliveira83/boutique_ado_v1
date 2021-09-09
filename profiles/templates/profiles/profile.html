@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
 {% endblock %}
@@ -24,7 +23,5 @@
                 <hr>
             </div>
         </div>
-
-
+        {{ profile }}
 {% endblock %}
-
