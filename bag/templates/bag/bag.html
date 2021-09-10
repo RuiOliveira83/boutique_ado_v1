@@ -44,14 +44,14 @@
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.product.name }}</strong></p>
-                                        <p class="my-0"><strong>Size: </strong>{% if item.product.has_sizes %}{{item.size|upper }}{% else %}N/A{% endif %}</p>
+                                        <p class="my-0"><strong>Size: </strong>{% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
                                         <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">${{ item.product.price }}</p>
                                     </td>
-                                    <td class="py-3">
-                                        <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="post">
+                                    <td class="py-3 w-25">
+                                        <form class="form update-form" action="{% url 'adjust_bag' item.item_id %}" method="POST">
                                             {% csrf_token %}
                                             <div class="form-group">
                                                 <div class="input-group">
@@ -102,7 +102,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5" class="pt-5 text-right">
+                                <td colspan="5" class="text-right">
                                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
                                         <span class="icon">
                                             <i class="fas fa-chevron-left"></i>
@@ -152,9 +152,9 @@
         var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
 
         $.post(url, data)
-            .done(function() {
-                location.reload();
-            });
+        .done(function() {
+            location.reload();
+        });
     })
 </script>
 {% endblock %}

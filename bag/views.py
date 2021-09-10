@@ -3,8 +3,6 @@ from django.contrib import messages
 
 from products.models import Product
 
-# Create your views here.
-
 
 def view_bag(request):
     """ A view that renders the bag contents page """
@@ -32,7 +30,7 @@ def add_to_bag(request, item_id):
                 bag[item_id]['items_by_size'][size] = quantity
                 messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
         else:
-            bag[item_id] = {'items_by_size': {size : quantity}}
+            bag[item_id] = {'items_by_size': {size: quantity}}
             messages.success(request, f'Added size {size.upper()} {product.name} to your bag')
     else:
         if item_id in list(bag.keys()):
@@ -44,10 +42,10 @@ def add_to_bag(request, item_id):
 
     request.session['bag'] = bag
     return redirect(redirect_url)
-
+    
 
 def adjust_bag(request, item_id):
-    """ Adjust the quantity of the specified product to the specified amount """
+    """Adjust the quantity of the specified product to the specified amount"""
 
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
@@ -78,7 +76,7 @@ def adjust_bag(request, item_id):
 
 
 def remove_from_bag(request, item_id):
-    """ Remove the item from the shopping bag """
+    """Remove the item from the shopping bag"""
 
     try:
         product = get_object_or_404(Product, pk=item_id)
